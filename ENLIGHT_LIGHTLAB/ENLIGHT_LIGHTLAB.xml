@@ -1,0 +1,3724 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AreaLightingSystem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../03_Product_Area/Area_Configurator_Commissioning/Simulator/XML-Schema/Programming_data.xsd">
+  <FileProperties Author="Thomas van de Werff" Date="4 4 2017" Name="XML for Lightlab" Version="1.0"/>
+  <Luminaire Address="00:15:8d:00:00:35:d3:9f" MaxNumberOfPresets="1" MaxNumberOfVariables="1" Name="d3:9f" NumberOfLLE="1" NumberOfLevels="1">
+    <LevelDefs>
+      <DefColorCCT Brightness="35000" CCT="4000" LLEAddress="1" On="true">1</DefColorCCT>
+    </LevelDefs>
+    <Rule Name="Initialized">
+      <TriggerEvent Address="00:00:00:00:00:00:00:00" AddressName="Luminaire Internal" Type="Initialized"/>
+      <Action>
+        <LevelActivation>
+          <Level Activation="true">1</Level>
+        </LevelActivation>
+        <LuminaireSetting Command="SetFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <Constant_u8>20</Constant_u8>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetColorFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <Constant_u8>10</Constant_u8>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed CCT from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="ColorChangedCCT"/>
+      <Action>
+        <LuminaireSetting Command="SetColorTemperature">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed CCT with fade time from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="Event02"/>
+      <Action>
+        <LuminaireSetting Command="SetColorTemperature">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetColorFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="DimLevel changed from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="DimLevelChanged"/>
+      <Action>
+        <LuminaireSetting Command="SetDimmingLevel">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Dimlevel changed with fade time from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="Event03"/>
+      <Action>
+        <LuminaireSetting Command="SetDimmingLevel">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed CCT and DimLevel from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="Event01"/>
+      <Action>
+        <LuminaireSetting Command="SetColorTemperature">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetDimmingLevel">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed RGB from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="ColorChangedRGB"/>
+      <Action>
+        <LuminaireSetting Command="SetColorRGB">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+          <Argument>
+            <EventArgIndex>3</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed RGB from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="Event04"/>
+      <Action>
+        <LuminaireSetting Command="SetColorRGB">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+          <Argument>
+            <EventArgIndex>3</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetColorFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>4</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="On Received from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="OnOffChanged"/>
+      <Condition>
+        <EventParCondition Comparator="EQ">
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+          <Argument>
+            <Constant_u8>1</Constant_u8>
+          </Argument>
+        </EventParCondition>
+      </Condition>
+      <Action>
+        <LevelActivation>
+          <Level Activation="true">1</Level>
+        </LevelActivation>
+      </Action>
+    </Rule>
+    <Rule Name="Off Received from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="OnOffChanged"/>
+      <Condition>
+        <EventParCondition Comparator="EQ">
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+          <Argument>
+            <Constant_u8>0</Constant_u8>
+          </Argument>
+        </EventParCondition>
+      </Condition>
+      <Action>
+        <LevelActivation>
+          <Level Activation="false">1</Level>
+        </LevelActivation>
+      </Action>
+    </Rule>
+    <ConfigurationParameter ILBDeviceIndex="1" ParameterID="PresenceSensorDevice_PresenceReportingInterval">
+      <uint16>1</uint16>
+    </ConfigurationParameter>
+    <ConfigurationParameter ILBDeviceIndex="1" ParameterID="PresenceSensorDevice_AbsenceTime">
+      <uint16>1</uint16>
+    </ConfigurationParameter>
+    <ConfigurationParameter ILBDeviceIndex="1" ParameterID="PresenceSensorDevice_PresenceLevel">
+      <uint16>3</uint16>
+    </ConfigurationParameter>
+    <ConfigurationParameter ILBDeviceIndex="1" ParameterID="LuminaireDevice_Max_RandomAnnounceDelay">
+      <uint16>240</uint16>
+    </ConfigurationParameter>
+  </Luminaire>
+  <Luminaire Address="00:15:8d:00:00:35:ce:97" MaxNumberOfPresets="1" MaxNumberOfVariables="1" Name="ce:97" NumberOfLLE="1" NumberOfLevels="1">
+    <LevelDefs>
+      <DefColorCCT Brightness="35000" CCT="4000" LLEAddress="1" On="true">1</DefColorCCT>
+    </LevelDefs>
+    <Rule Name="Initialized">
+      <TriggerEvent Address="00:00:00:00:00:00:00:00" AddressName="Luminaire Internal" Type="Initialized"/>
+      <Action>
+        <LevelActivation>
+          <Level Activation="true">1</Level>
+        </LevelActivation>
+        <LuminaireSetting Command="SetFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <Constant_u8>20</Constant_u8>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetColorFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <Constant_u8>10</Constant_u8>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed CCT from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="ColorChangedCCT"/>
+      <Action>
+        <LuminaireSetting Command="SetColorTemperature">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed CCT with fade time from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="Event02"/>
+      <Action>
+        <LuminaireSetting Command="SetColorTemperature">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetColorFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="DimLevel changed from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="DimLevelChanged"/>
+      <Action>
+        <LuminaireSetting Command="SetDimmingLevel">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Dimlevel changed with fade time from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="Event03"/>
+      <Action>
+        <LuminaireSetting Command="SetDimmingLevel">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed CCT and DimLevel from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="Event01"/>
+      <Action>
+        <LuminaireSetting Command="SetColorTemperature">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetDimmingLevel">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed RGB from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="ColorChangedRGB"/>
+      <Action>
+        <LuminaireSetting Command="SetColorRGB">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+          <Argument>
+            <EventArgIndex>3</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed RGB from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="Event04"/>
+      <Action>
+        <LuminaireSetting Command="SetColorRGB">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+          <Argument>
+            <EventArgIndex>3</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetColorFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>4</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="On Received from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="OnOffChanged"/>
+      <Condition>
+        <EventParCondition Comparator="EQ">
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+          <Argument>
+            <Constant_u8>1</Constant_u8>
+          </Argument>
+        </EventParCondition>
+      </Condition>
+      <Action>
+        <LevelActivation>
+          <Level Activation="true">1</Level>
+        </LevelActivation>
+      </Action>
+    </Rule>
+    <Rule Name="Off Received from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="OnOffChanged"/>
+      <Condition>
+        <EventParCondition Comparator="EQ">
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+          <Argument>
+            <Constant_u8>0</Constant_u8>
+          </Argument>
+        </EventParCondition>
+      </Condition>
+      <Action>
+        <LevelActivation>
+          <Level Activation="false">1</Level>
+        </LevelActivation>
+      </Action>
+    </Rule>
+    <ConfigurationParameter ILBDeviceIndex="1" ParameterID="PresenceSensorDevice_PresenceReportingInterval">
+      <uint16>1</uint16>
+    </ConfigurationParameter>
+    <ConfigurationParameter ILBDeviceIndex="1" ParameterID="PresenceSensorDevice_AbsenceTime">
+      <uint16>1</uint16>
+    </ConfigurationParameter>
+    <ConfigurationParameter ILBDeviceIndex="1" ParameterID="PresenceSensorDevice_PresenceLevel">
+      <uint16>3</uint16>
+    </ConfigurationParameter>
+    <ConfigurationParameter ILBDeviceIndex="1" ParameterID="LuminaireDevice_Max_RandomAnnounceDelay">
+      <uint16>240</uint16>
+    </ConfigurationParameter>
+  </Luminaire>
+  <Luminaire Address="00:15:8d:00:00:35:d3:5c" MaxNumberOfPresets="1" MaxNumberOfVariables="1" Name="d3:5c" NumberOfLLE="1" NumberOfLevels="1">
+    <LevelDefs>
+      <DefColorCCT Brightness="35000" CCT="4000" LLEAddress="1" On="true">1</DefColorCCT>
+    </LevelDefs>
+    <Rule Name="Initialized">
+      <TriggerEvent Address="00:00:00:00:00:00:00:00" AddressName="Luminaire Internal" Type="Initialized"/>
+      <Action>
+        <LevelActivation>
+          <Level Activation="true">1</Level>
+        </LevelActivation>
+        <LuminaireSetting Command="SetFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <Constant_u8>20</Constant_u8>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetColorFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <Constant_u8>10</Constant_u8>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed CCT from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="ColorChangedCCT"/>
+      <Action>
+        <LuminaireSetting Command="SetColorTemperature">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed CCT with fade time from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="Event02"/>
+      <Action>
+        <LuminaireSetting Command="SetColorTemperature">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetColorFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="DimLevel changed from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="DimLevelChanged"/>
+      <Action>
+        <LuminaireSetting Command="SetDimmingLevel">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Dimlevel changed with fade time from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="Event03"/>
+      <Action>
+        <LuminaireSetting Command="SetDimmingLevel">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed CCT and DimLevel from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="Event01"/>
+      <Action>
+        <LuminaireSetting Command="SetColorTemperature">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetDimmingLevel">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed RGB from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="ColorChangedRGB"/>
+      <Action>
+        <LuminaireSetting Command="SetColorRGB">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+          <Argument>
+            <EventArgIndex>3</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed RGB from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="Event04"/>
+      <Action>
+        <LuminaireSetting Command="SetColorRGB">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+          <Argument>
+            <EventArgIndex>3</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetColorFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>4</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="On Received from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="OnOffChanged"/>
+      <Condition>
+        <EventParCondition Comparator="EQ">
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+          <Argument>
+            <Constant_u8>1</Constant_u8>
+          </Argument>
+        </EventParCondition>
+      </Condition>
+      <Action>
+        <LevelActivation>
+          <Level Activation="true">1</Level>
+        </LevelActivation>
+      </Action>
+    </Rule>
+    <Rule Name="Off Received from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="OnOffChanged"/>
+      <Condition>
+        <EventParCondition Comparator="EQ">
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+          <Argument>
+            <Constant_u8>0</Constant_u8>
+          </Argument>
+        </EventParCondition>
+      </Condition>
+      <Action>
+        <LevelActivation>
+          <Level Activation="false">1</Level>
+        </LevelActivation>
+      </Action>
+    </Rule>
+    <ConfigurationParameter ILBDeviceIndex="1" ParameterID="PresenceSensorDevice_PresenceReportingInterval">
+      <uint16>1</uint16>
+    </ConfigurationParameter>
+    <ConfigurationParameter ILBDeviceIndex="1" ParameterID="PresenceSensorDevice_AbsenceTime">
+      <uint16>1</uint16>
+    </ConfigurationParameter>
+    <ConfigurationParameter ILBDeviceIndex="1" ParameterID="PresenceSensorDevice_PresenceLevel">
+      <uint16>3</uint16>
+    </ConfigurationParameter>
+    <ConfigurationParameter ILBDeviceIndex="1" ParameterID="LuminaireDevice_Max_RandomAnnounceDelay">
+      <uint16>240</uint16>
+    </ConfigurationParameter>
+  </Luminaire>
+  <Luminaire Address="00:15:8d:00:00:35:d2:c8" MaxNumberOfPresets="1" MaxNumberOfVariables="1" Name="d2:c8" NumberOfLLE="1" NumberOfLevels="1">
+    <LevelDefs>
+      <DefColorCCT Brightness="35000" CCT="4000" LLEAddress="1" On="true">1</DefColorCCT>
+    </LevelDefs>
+    <Rule Name="Initialized">
+      <TriggerEvent Address="00:00:00:00:00:00:00:00" AddressName="Luminaire Internal" Type="Initialized"/>
+      <Action>
+        <LevelActivation>
+          <Level Activation="true">1</Level>
+        </LevelActivation>
+        <LuminaireSetting Command="SetFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <Constant_u8>20</Constant_u8>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetColorFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <Constant_u8>10</Constant_u8>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed CCT from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="ColorChangedCCT"/>
+      <Action>
+        <LuminaireSetting Command="SetColorTemperature">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed CCT with fade time from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="Event02"/>
+      <Action>
+        <LuminaireSetting Command="SetColorTemperature">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetColorFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="DimLevel changed from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="DimLevelChanged"/>
+      <Action>
+        <LuminaireSetting Command="SetDimmingLevel">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Dimlevel changed with fade time from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="Event03"/>
+      <Action>
+        <LuminaireSetting Command="SetDimmingLevel">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed CCT and DimLevel from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="Event01"/>
+      <Action>
+        <LuminaireSetting Command="SetColorTemperature">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetDimmingLevel">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed RGB from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="ColorChangedRGB"/>
+      <Action>
+        <LuminaireSetting Command="SetColorRGB">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+          <Argument>
+            <EventArgIndex>3</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed RGB from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="Event04"/>
+      <Action>
+        <LuminaireSetting Command="SetColorRGB">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+          <Argument>
+            <EventArgIndex>3</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetColorFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>4</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="On Received from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="OnOffChanged"/>
+      <Condition>
+        <EventParCondition Comparator="EQ">
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+          <Argument>
+            <Constant_u8>1</Constant_u8>
+          </Argument>
+        </EventParCondition>
+      </Condition>
+      <Action>
+        <LevelActivation>
+          <Level Activation="true">1</Level>
+        </LevelActivation>
+      </Action>
+    </Rule>
+    <Rule Name="Off Received from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="OnOffChanged"/>
+      <Condition>
+        <EventParCondition Comparator="EQ">
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+          <Argument>
+            <Constant_u8>0</Constant_u8>
+          </Argument>
+        </EventParCondition>
+      </Condition>
+      <Action>
+        <LevelActivation>
+          <Level Activation="false">1</Level>
+        </LevelActivation>
+      </Action>
+    </Rule>
+    <ConfigurationParameter ILBDeviceIndex="1" ParameterID="PresenceSensorDevice_PresenceReportingInterval">
+      <uint16>1</uint16>
+    </ConfigurationParameter>
+    <ConfigurationParameter ILBDeviceIndex="1" ParameterID="PresenceSensorDevice_AbsenceTime">
+      <uint16>1</uint16>
+    </ConfigurationParameter>
+    <ConfigurationParameter ILBDeviceIndex="1" ParameterID="PresenceSensorDevice_PresenceLevel">
+      <uint16>3</uint16>
+    </ConfigurationParameter>
+    <ConfigurationParameter ILBDeviceIndex="1" ParameterID="LuminaireDevice_Max_RandomAnnounceDelay">
+      <uint16>240</uint16>
+    </ConfigurationParameter>
+  </Luminaire>
+  <Luminaire Address="00:15:8d:00:00:35:d3:88" MaxNumberOfPresets="1" MaxNumberOfVariables="1" Name="d3:88" NumberOfLLE="1" NumberOfLevels="1">
+    <LevelDefs>
+      <DefColorCCT Brightness="35000" CCT="4000" LLEAddress="1" On="true">1</DefColorCCT>
+    </LevelDefs>
+    <Rule Name="Initialized">
+      <TriggerEvent Address="00:00:00:00:00:00:00:00" AddressName="Luminaire Internal" Type="Initialized"/>
+      <Action>
+        <LevelActivation>
+          <Level Activation="true">1</Level>
+        </LevelActivation>
+        <LuminaireSetting Command="SetFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <Constant_u8>20</Constant_u8>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetColorFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <Constant_u8>10</Constant_u8>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed CCT from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="ColorChangedCCT"/>
+      <Action>
+        <LuminaireSetting Command="SetColorTemperature">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed CCT with fade time from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="Event02"/>
+      <Action>
+        <LuminaireSetting Command="SetColorTemperature">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetColorFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="DimLevel changed from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="DimLevelChanged"/>
+      <Action>
+        <LuminaireSetting Command="SetDimmingLevel">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Dimlevel changed with fade time from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="Event03"/>
+      <Action>
+        <LuminaireSetting Command="SetDimmingLevel">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed CCT and DimLevel from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="Event01"/>
+      <Action>
+        <LuminaireSetting Command="SetColorTemperature">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetDimmingLevel">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed RGB from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="ColorChangedRGB"/>
+      <Action>
+        <LuminaireSetting Command="SetColorRGB">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+          <Argument>
+            <EventArgIndex>3</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed RGB from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="Event04"/>
+      <Action>
+        <LuminaireSetting Command="SetColorRGB">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+          <Argument>
+            <EventArgIndex>3</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetColorFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>4</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="On Received from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="OnOffChanged"/>
+      <Condition>
+        <EventParCondition Comparator="EQ">
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+          <Argument>
+            <Constant_u8>1</Constant_u8>
+          </Argument>
+        </EventParCondition>
+      </Condition>
+      <Action>
+        <LevelActivation>
+          <Level Activation="true">1</Level>
+        </LevelActivation>
+      </Action>
+    </Rule>
+    <Rule Name="Off Received from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="OnOffChanged"/>
+      <Condition>
+        <EventParCondition Comparator="EQ">
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+          <Argument>
+            <Constant_u8>0</Constant_u8>
+          </Argument>
+        </EventParCondition>
+      </Condition>
+      <Action>
+        <LevelActivation>
+          <Level Activation="false">1</Level>
+        </LevelActivation>
+      </Action>
+    </Rule>
+    <ConfigurationParameter ILBDeviceIndex="1" ParameterID="PresenceSensorDevice_PresenceReportingInterval">
+      <uint16>1</uint16>
+    </ConfigurationParameter>
+    <ConfigurationParameter ILBDeviceIndex="1" ParameterID="PresenceSensorDevice_AbsenceTime">
+      <uint16>1</uint16>
+    </ConfigurationParameter>
+    <ConfigurationParameter ILBDeviceIndex="1" ParameterID="PresenceSensorDevice_PresenceLevel">
+      <uint16>3</uint16>
+    </ConfigurationParameter>
+    <ConfigurationParameter ILBDeviceIndex="1" ParameterID="LuminaireDevice_Max_RandomAnnounceDelay">
+      <uint16>240</uint16>
+    </ConfigurationParameter>
+  </Luminaire>
+  <Luminaire Address="00:15:8d:00:00:35:ce:73" MaxNumberOfPresets="1" MaxNumberOfVariables="1" Name="ce:73" NumberOfLLE="1" NumberOfLevels="1">
+    <LevelDefs>
+      <DefColorCCT Brightness="35000" CCT="4000" LLEAddress="1" On="true">1</DefColorCCT>
+    </LevelDefs>
+    <Rule Name="Initialized">
+      <TriggerEvent Address="00:00:00:00:00:00:00:00" AddressName="Luminaire Internal" Type="Initialized"/>
+      <Action>
+        <LevelActivation>
+          <Level Activation="true">1</Level>
+        </LevelActivation>
+        <LuminaireSetting Command="SetFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <Constant_u8>20</Constant_u8>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetColorFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <Constant_u8>10</Constant_u8>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed CCT from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="ColorChangedCCT"/>
+      <Action>
+        <LuminaireSetting Command="SetColorTemperature">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed CCT with fade time from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="Event02"/>
+      <Action>
+        <LuminaireSetting Command="SetColorTemperature">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetColorFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="DimLevel changed from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="DimLevelChanged"/>
+      <Action>
+        <LuminaireSetting Command="SetDimmingLevel">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Dimlevel changed with fade time from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="Event03"/>
+      <Action>
+        <LuminaireSetting Command="SetDimmingLevel">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed CCT and DimLevel from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="Event01"/>
+      <Action>
+        <LuminaireSetting Command="SetColorTemperature">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetDimmingLevel">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed RGB from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="ColorChangedRGB"/>
+      <Action>
+        <LuminaireSetting Command="SetColorRGB">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+          <Argument>
+            <EventArgIndex>3</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed RGB from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="Event04"/>
+      <Action>
+        <LuminaireSetting Command="SetColorRGB">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+          <Argument>
+            <EventArgIndex>3</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetColorFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>4</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="On Received from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="OnOffChanged"/>
+      <Condition>
+        <EventParCondition Comparator="EQ">
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+          <Argument>
+            <Constant_u8>1</Constant_u8>
+          </Argument>
+        </EventParCondition>
+      </Condition>
+      <Action>
+        <LevelActivation>
+          <Level Activation="true">1</Level>
+        </LevelActivation>
+      </Action>
+    </Rule>
+    <Rule Name="Off Received from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="OnOffChanged"/>
+      <Condition>
+        <EventParCondition Comparator="EQ">
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+          <Argument>
+            <Constant_u8>0</Constant_u8>
+          </Argument>
+        </EventParCondition>
+      </Condition>
+      <Action>
+        <LevelActivation>
+          <Level Activation="false">1</Level>
+        </LevelActivation>
+      </Action>
+    </Rule>
+    <ConfigurationParameter ILBDeviceIndex="1" ParameterID="PresenceSensorDevice_PresenceReportingInterval">
+      <uint16>1</uint16>
+    </ConfigurationParameter>
+    <ConfigurationParameter ILBDeviceIndex="1" ParameterID="PresenceSensorDevice_AbsenceTime">
+      <uint16>1</uint16>
+    </ConfigurationParameter>
+    <ConfigurationParameter ILBDeviceIndex="1" ParameterID="PresenceSensorDevice_PresenceLevel">
+      <uint16>3</uint16>
+    </ConfigurationParameter>
+    <ConfigurationParameter ILBDeviceIndex="1" ParameterID="LuminaireDevice_Max_RandomAnnounceDelay">
+      <uint16>240</uint16>
+    </ConfigurationParameter>
+  </Luminaire>
+  <Luminaire Address="00:15:8d:00:00:35:d3:3a" MaxNumberOfPresets="1" MaxNumberOfVariables="1" Name="d3:3a" NumberOfLLE="1" NumberOfLevels="1">
+    <LevelDefs>
+      <DefColorCCT Brightness="35000" CCT="4000" LLEAddress="1" On="true">1</DefColorCCT>
+    </LevelDefs>
+    <Rule Name="Initialized">
+      <TriggerEvent Address="00:00:00:00:00:00:00:00" AddressName="Luminaire Internal" Type="Initialized"/>
+      <Action>
+        <LevelActivation>
+          <Level Activation="true">1</Level>
+        </LevelActivation>
+        <LuminaireSetting Command="SetFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <Constant_u8>20</Constant_u8>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetColorFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <Constant_u8>10</Constant_u8>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed CCT from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="ColorChangedCCT"/>
+      <Action>
+        <LuminaireSetting Command="SetColorTemperature">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed CCT with fade time from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="Event02"/>
+      <Action>
+        <LuminaireSetting Command="SetColorTemperature">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetColorFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="DimLevel changed from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="DimLevelChanged"/>
+      <Action>
+        <LuminaireSetting Command="SetDimmingLevel">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Dimlevel changed with fade time from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="Event03"/>
+      <Action>
+        <LuminaireSetting Command="SetDimmingLevel">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed CCT and DimLevel from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="Event01"/>
+      <Action>
+        <LuminaireSetting Command="SetColorTemperature">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetDimmingLevel">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed RGB from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="ColorChangedRGB"/>
+      <Action>
+        <LuminaireSetting Command="SetColorRGB">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+          <Argument>
+            <EventArgIndex>3</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed RGB from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="Event04"/>
+      <Action>
+        <LuminaireSetting Command="SetColorRGB">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+          <Argument>
+            <EventArgIndex>3</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetColorFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>4</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="On Received from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="OnOffChanged"/>
+      <Condition>
+        <EventParCondition Comparator="EQ">
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+          <Argument>
+            <Constant_u8>1</Constant_u8>
+          </Argument>
+        </EventParCondition>
+      </Condition>
+      <Action>
+        <LevelActivation>
+          <Level Activation="true">1</Level>
+        </LevelActivation>
+      </Action>
+    </Rule>
+    <Rule Name="Off Received from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="OnOffChanged"/>
+      <Condition>
+        <EventParCondition Comparator="EQ">
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+          <Argument>
+            <Constant_u8>0</Constant_u8>
+          </Argument>
+        </EventParCondition>
+      </Condition>
+      <Action>
+        <LevelActivation>
+          <Level Activation="false">1</Level>
+        </LevelActivation>
+      </Action>
+    </Rule>
+    <ConfigurationParameter ILBDeviceIndex="1" ParameterID="PresenceSensorDevice_PresenceReportingInterval">
+      <uint16>1</uint16>
+    </ConfigurationParameter>
+    <ConfigurationParameter ILBDeviceIndex="1" ParameterID="PresenceSensorDevice_AbsenceTime">
+      <uint16>1</uint16>
+    </ConfigurationParameter>
+    <ConfigurationParameter ILBDeviceIndex="1" ParameterID="PresenceSensorDevice_PresenceLevel">
+      <uint16>3</uint16>
+    </ConfigurationParameter>
+    <ConfigurationParameter ILBDeviceIndex="1" ParameterID="LuminaireDevice_Max_RandomAnnounceDelay">
+      <uint16>240</uint16>
+    </ConfigurationParameter>
+  </Luminaire>
+  <Luminaire Address="00:15:8d:00:00:35:d2:11" MaxNumberOfPresets="1" MaxNumberOfVariables="1" Name="d2:11" NumberOfLLE="1" NumberOfLevels="1">
+    <LevelDefs>
+      <DefColorCCT Brightness="35000" CCT="4000" LLEAddress="1" On="true">1</DefColorCCT>
+    </LevelDefs>
+    <Rule Name="Initialized">
+      <TriggerEvent Address="00:00:00:00:00:00:00:00" AddressName="Luminaire Internal" Type="Initialized"/>
+      <Action>
+        <LevelActivation>
+          <Level Activation="true">1</Level>
+        </LevelActivation>
+        <LuminaireSetting Command="SetFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <Constant_u8>20</Constant_u8>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetColorFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <Constant_u8>10</Constant_u8>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed CCT from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="ColorChangedCCT"/>
+      <Action>
+        <LuminaireSetting Command="SetColorTemperature">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed CCT with fade time from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="Event02"/>
+      <Action>
+        <LuminaireSetting Command="SetColorTemperature">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetColorFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="DimLevel changed from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="DimLevelChanged"/>
+      <Action>
+        <LuminaireSetting Command="SetDimmingLevel">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Dimlevel changed with fade time from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="Event03"/>
+      <Action>
+        <LuminaireSetting Command="SetDimmingLevel">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed CCT and DimLevel from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="Event01"/>
+      <Action>
+        <LuminaireSetting Command="SetColorTemperature">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetDimmingLevel">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed RGB from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="ColorChangedRGB"/>
+      <Action>
+        <LuminaireSetting Command="SetColorRGB">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+          <Argument>
+            <EventArgIndex>3</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed RGB from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="Event04"/>
+      <Action>
+        <LuminaireSetting Command="SetColorRGB">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+          <Argument>
+            <EventArgIndex>3</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetColorFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>4</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="On Received from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="OnOffChanged"/>
+      <Condition>
+        <EventParCondition Comparator="EQ">
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+          <Argument>
+            <Constant_u8>1</Constant_u8>
+          </Argument>
+        </EventParCondition>
+      </Condition>
+      <Action>
+        <LevelActivation>
+          <Level Activation="true">1</Level>
+        </LevelActivation>
+      </Action>
+    </Rule>
+    <Rule Name="Off Received from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="OnOffChanged"/>
+      <Condition>
+        <EventParCondition Comparator="EQ">
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+          <Argument>
+            <Constant_u8>0</Constant_u8>
+          </Argument>
+        </EventParCondition>
+      </Condition>
+      <Action>
+        <LevelActivation>
+          <Level Activation="false">1</Level>
+        </LevelActivation>
+      </Action>
+    </Rule>
+    <ConfigurationParameter ILBDeviceIndex="1" ParameterID="PresenceSensorDevice_PresenceReportingInterval">
+      <uint16>1</uint16>
+    </ConfigurationParameter>
+    <ConfigurationParameter ILBDeviceIndex="1" ParameterID="PresenceSensorDevice_AbsenceTime">
+      <uint16>1</uint16>
+    </ConfigurationParameter>
+    <ConfigurationParameter ILBDeviceIndex="1" ParameterID="PresenceSensorDevice_PresenceLevel">
+      <uint16>3</uint16>
+    </ConfigurationParameter>
+    <ConfigurationParameter ILBDeviceIndex="1" ParameterID="LuminaireDevice_Max_RandomAnnounceDelay">
+      <uint16>240</uint16>
+    </ConfigurationParameter>
+  </Luminaire>
+  <Luminaire Address="00:15:8d:00:00:35:cf:72" MaxNumberOfPresets="1" MaxNumberOfVariables="1" Name="cf:72" NumberOfLLE="1" NumberOfLevels="1">
+    <LevelDefs>
+      <DefColorCCT Brightness="35000" CCT="4000" LLEAddress="1" On="true">1</DefColorCCT>
+    </LevelDefs>
+    <Rule Name="Initialized">
+      <TriggerEvent Address="00:00:00:00:00:00:00:00" AddressName="Luminaire Internal" Type="Initialized"/>
+      <Action>
+        <LevelActivation>
+          <Level Activation="true">1</Level>
+        </LevelActivation>
+        <LuminaireSetting Command="SetFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <Constant_u8>20</Constant_u8>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetColorFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <Constant_u8>10</Constant_u8>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed CCT from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="ColorChangedCCT"/>
+      <Action>
+        <LuminaireSetting Command="SetColorTemperature">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed CCT with fade time from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="Event02"/>
+      <Action>
+        <LuminaireSetting Command="SetColorTemperature">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetColorFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="DimLevel changed from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="DimLevelChanged"/>
+      <Action>
+        <LuminaireSetting Command="SetDimmingLevel">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Dimlevel changed with fade time from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="Event03"/>
+      <Action>
+        <LuminaireSetting Command="SetDimmingLevel">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed CCT and DimLevel from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="Event01"/>
+      <Action>
+        <LuminaireSetting Command="SetColorTemperature">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetDimmingLevel">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed RGB from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="ColorChangedRGB"/>
+      <Action>
+        <LuminaireSetting Command="SetColorRGB">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+          <Argument>
+            <EventArgIndex>3</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed RGB from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="Event04"/>
+      <Action>
+        <LuminaireSetting Command="SetColorRGB">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+          <Argument>
+            <EventArgIndex>3</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetColorFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>4</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="On Received from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="OnOffChanged"/>
+      <Condition>
+        <EventParCondition Comparator="EQ">
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+          <Argument>
+            <Constant_u8>1</Constant_u8>
+          </Argument>
+        </EventParCondition>
+      </Condition>
+      <Action>
+        <LevelActivation>
+          <Level Activation="true">1</Level>
+        </LevelActivation>
+      </Action>
+    </Rule>
+    <Rule Name="Off Received from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="OnOffChanged"/>
+      <Condition>
+        <EventParCondition Comparator="EQ">
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+          <Argument>
+            <Constant_u8>0</Constant_u8>
+          </Argument>
+        </EventParCondition>
+      </Condition>
+      <Action>
+        <LevelActivation>
+          <Level Activation="false">1</Level>
+        </LevelActivation>
+      </Action>
+    </Rule>
+    <ConfigurationParameter ILBDeviceIndex="1" ParameterID="PresenceSensorDevice_PresenceReportingInterval">
+      <uint16>1</uint16>
+    </ConfigurationParameter>
+    <ConfigurationParameter ILBDeviceIndex="1" ParameterID="PresenceSensorDevice_AbsenceTime">
+      <uint16>1</uint16>
+    </ConfigurationParameter>
+    <ConfigurationParameter ILBDeviceIndex="1" ParameterID="PresenceSensorDevice_PresenceLevel">
+      <uint16>3</uint16>
+    </ConfigurationParameter>
+    <ConfigurationParameter ILBDeviceIndex="1" ParameterID="LuminaireDevice_Max_RandomAnnounceDelay">
+      <uint16>240</uint16>
+    </ConfigurationParameter>
+  </Luminaire>
+  <Luminaire Address="00:15:8d:00:00:35:d2:2c" MaxNumberOfPresets="1" MaxNumberOfVariables="1" Name="d2:2c" NumberOfLLE="1" NumberOfLevels="1">
+    <LevelDefs>
+      <DefColorCCT Brightness="35000" CCT="4000" LLEAddress="1" On="true">1</DefColorCCT>
+    </LevelDefs>
+    <Rule Name="Initialized">
+      <TriggerEvent Address="00:00:00:00:00:00:00:00" AddressName="Luminaire Internal" Type="Initialized"/>
+      <Action>
+        <LevelActivation>
+          <Level Activation="true">1</Level>
+        </LevelActivation>
+        <LuminaireSetting Command="SetFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <Constant_u8>20</Constant_u8>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetColorFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <Constant_u8>10</Constant_u8>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed CCT from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="ColorChangedCCT"/>
+      <Action>
+        <LuminaireSetting Command="SetColorTemperature">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed CCT with fade time from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="Event02"/>
+      <Action>
+        <LuminaireSetting Command="SetColorTemperature">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetColorFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="DimLevel changed from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="DimLevelChanged"/>
+      <Action>
+        <LuminaireSetting Command="SetDimmingLevel">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Dimlevel changed with fade time from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="Event03"/>
+      <Action>
+        <LuminaireSetting Command="SetDimmingLevel">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed CCT and DimLevel from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="Event01"/>
+      <Action>
+        <LuminaireSetting Command="SetColorTemperature">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetDimmingLevel">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed RGB from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="ColorChangedRGB"/>
+      <Action>
+        <LuminaireSetting Command="SetColorRGB">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+          <Argument>
+            <EventArgIndex>3</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed RGB from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="Event04"/>
+      <Action>
+        <LuminaireSetting Command="SetColorRGB">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+          <Argument>
+            <EventArgIndex>3</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetColorFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>4</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="On Received from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="OnOffChanged"/>
+      <Condition>
+        <EventParCondition Comparator="EQ">
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+          <Argument>
+            <Constant_u8>1</Constant_u8>
+          </Argument>
+        </EventParCondition>
+      </Condition>
+      <Action>
+        <LevelActivation>
+          <Level Activation="true">1</Level>
+        </LevelActivation>
+      </Action>
+    </Rule>
+    <Rule Name="Off Received from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="OnOffChanged"/>
+      <Condition>
+        <EventParCondition Comparator="EQ">
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+          <Argument>
+            <Constant_u8>0</Constant_u8>
+          </Argument>
+        </EventParCondition>
+      </Condition>
+      <Action>
+        <LevelActivation>
+          <Level Activation="false">1</Level>
+        </LevelActivation>
+      </Action>
+    </Rule>
+    <ConfigurationParameter ILBDeviceIndex="1" ParameterID="PresenceSensorDevice_PresenceReportingInterval">
+      <uint16>1</uint16>
+    </ConfigurationParameter>
+    <ConfigurationParameter ILBDeviceIndex="1" ParameterID="PresenceSensorDevice_AbsenceTime">
+      <uint16>1</uint16>
+    </ConfigurationParameter>
+    <ConfigurationParameter ILBDeviceIndex="1" ParameterID="PresenceSensorDevice_PresenceLevel">
+      <uint16>3</uint16>
+    </ConfigurationParameter>
+    <ConfigurationParameter ILBDeviceIndex="1" ParameterID="LuminaireDevice_Max_RandomAnnounceDelay">
+      <uint16>240</uint16>
+    </ConfigurationParameter>
+  </Luminaire>
+  <Luminaire Address="00:15:8d:00:00:35:d2:29" MaxNumberOfPresets="1" MaxNumberOfVariables="1" Name="d2:29" NumberOfLLE="1" NumberOfLevels="1">
+    <LevelDefs>
+      <DefColorCCT Brightness="35000" CCT="4000" LLEAddress="1" On="true">1</DefColorCCT>
+    </LevelDefs>
+    <Rule Name="Initialized">
+      <TriggerEvent Address="00:00:00:00:00:00:00:00" AddressName="Luminaire Internal" Type="Initialized"/>
+      <Action>
+        <LevelActivation>
+          <Level Activation="true">1</Level>
+        </LevelActivation>
+        <LuminaireSetting Command="SetFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <Constant_u8>20</Constant_u8>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetColorFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <Constant_u8>10</Constant_u8>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed CCT from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="ColorChangedCCT"/>
+      <Action>
+        <LuminaireSetting Command="SetColorTemperature">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed CCT with fade time from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="Event02"/>
+      <Action>
+        <LuminaireSetting Command="SetColorTemperature">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetColorFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="DimLevel changed from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="DimLevelChanged"/>
+      <Action>
+        <LuminaireSetting Command="SetDimmingLevel">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Dimlevel changed with fade time from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="Event03"/>
+      <Action>
+        <LuminaireSetting Command="SetDimmingLevel">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed CCT and DimLevel from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="Event01"/>
+      <Action>
+        <LuminaireSetting Command="SetColorTemperature">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetDimmingLevel">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed RGB from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="ColorChangedRGB"/>
+      <Action>
+        <LuminaireSetting Command="SetColorRGB">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+          <Argument>
+            <EventArgIndex>3</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed RGB from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="Event04"/>
+      <Action>
+        <LuminaireSetting Command="SetColorRGB">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+          <Argument>
+            <EventArgIndex>3</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetColorFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>4</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="On Received from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="OnOffChanged"/>
+      <Condition>
+        <EventParCondition Comparator="EQ">
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+          <Argument>
+            <Constant_u8>1</Constant_u8>
+          </Argument>
+        </EventParCondition>
+      </Condition>
+      <Action>
+        <LevelActivation>
+          <Level Activation="true">1</Level>
+        </LevelActivation>
+      </Action>
+    </Rule>
+    <Rule Name="Off Received from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="OnOffChanged"/>
+      <Condition>
+        <EventParCondition Comparator="EQ">
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+          <Argument>
+            <Constant_u8>0</Constant_u8>
+          </Argument>
+        </EventParCondition>
+      </Condition>
+      <Action>
+        <LevelActivation>
+          <Level Activation="false">1</Level>
+        </LevelActivation>
+      </Action>
+    </Rule>
+    <ConfigurationParameter ILBDeviceIndex="1" ParameterID="PresenceSensorDevice_PresenceReportingInterval">
+      <uint16>1</uint16>
+    </ConfigurationParameter>
+    <ConfigurationParameter ILBDeviceIndex="1" ParameterID="PresenceSensorDevice_AbsenceTime">
+      <uint16>1</uint16>
+    </ConfigurationParameter>
+    <ConfigurationParameter ILBDeviceIndex="1" ParameterID="PresenceSensorDevice_PresenceLevel">
+      <uint16>3</uint16>
+    </ConfigurationParameter>
+    <ConfigurationParameter ILBDeviceIndex="1" ParameterID="LuminaireDevice_Max_RandomAnnounceDelay">
+      <uint16>240</uint16>
+    </ConfigurationParameter>
+  </Luminaire>
+  <Luminaire Address="00:15:8d:00:00:35:d2:cf" MaxNumberOfPresets="1" MaxNumberOfVariables="1" Name="d2:cf" NumberOfLLE="1" NumberOfLevels="1">
+    <LevelDefs>
+      <DefColorCCT Brightness="35000" CCT="4000" LLEAddress="1" On="true">1</DefColorCCT>
+    </LevelDefs>
+    <Rule Name="Initialized">
+      <TriggerEvent Address="00:00:00:00:00:00:00:00" AddressName="Luminaire Internal" Type="Initialized"/>
+      <Action>
+        <LevelActivation>
+          <Level Activation="true">1</Level>
+        </LevelActivation>
+        <LuminaireSetting Command="SetFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <Constant_u8>20</Constant_u8>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetColorFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <Constant_u8>10</Constant_u8>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed CCT from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="ColorChangedCCT"/>
+      <Action>
+        <LuminaireSetting Command="SetColorTemperature">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed CCT with fade time from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="Event02"/>
+      <Action>
+        <LuminaireSetting Command="SetColorTemperature">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetColorFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="DimLevel changed from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="DimLevelChanged"/>
+      <Action>
+        <LuminaireSetting Command="SetDimmingLevel">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Dimlevel changed with fade time from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="Event03"/>
+      <Action>
+        <LuminaireSetting Command="SetDimmingLevel">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed CCT and DimLevel from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="Event01"/>
+      <Action>
+        <LuminaireSetting Command="SetColorTemperature">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetDimmingLevel">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed RGB from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="ColorChangedRGB"/>
+      <Action>
+        <LuminaireSetting Command="SetColorRGB">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+          <Argument>
+            <EventArgIndex>3</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed RGB from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="Event04"/>
+      <Action>
+        <LuminaireSetting Command="SetColorRGB">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+          <Argument>
+            <EventArgIndex>3</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetColorFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>4</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="On Received from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="OnOffChanged"/>
+      <Condition>
+        <EventParCondition Comparator="EQ">
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+          <Argument>
+            <Constant_u8>1</Constant_u8>
+          </Argument>
+        </EventParCondition>
+      </Condition>
+      <Action>
+        <LevelActivation>
+          <Level Activation="true">1</Level>
+        </LevelActivation>
+      </Action>
+    </Rule>
+    <Rule Name="Off Received from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="OnOffChanged"/>
+      <Condition>
+        <EventParCondition Comparator="EQ">
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+          <Argument>
+            <Constant_u8>0</Constant_u8>
+          </Argument>
+        </EventParCondition>
+      </Condition>
+      <Action>
+        <LevelActivation>
+          <Level Activation="false">1</Level>
+        </LevelActivation>
+      </Action>
+    </Rule>
+    <ConfigurationParameter ILBDeviceIndex="1" ParameterID="PresenceSensorDevice_PresenceReportingInterval">
+      <uint16>1</uint16>
+    </ConfigurationParameter>
+    <ConfigurationParameter ILBDeviceIndex="1" ParameterID="PresenceSensorDevice_AbsenceTime">
+      <uint16>1</uint16>
+    </ConfigurationParameter>
+    <ConfigurationParameter ILBDeviceIndex="1" ParameterID="PresenceSensorDevice_PresenceLevel">
+      <uint16>3</uint16>
+    </ConfigurationParameter>
+    <ConfigurationParameter ILBDeviceIndex="1" ParameterID="LuminaireDevice_Max_RandomAnnounceDelay">
+      <uint16>240</uint16>
+    </ConfigurationParameter>
+  </Luminaire>
+  <Luminaire Address="00:15:8d:00:00:35:cf:3a" MaxNumberOfPresets="1" MaxNumberOfVariables="1" Name="cf:3a" NumberOfLLE="1" NumberOfLevels="1">
+    <LevelDefs>
+      <DefColorCCT Brightness="35000" CCT="4000" LLEAddress="1" On="true">1</DefColorCCT>
+    </LevelDefs>
+    <Rule Name="Initialized">
+      <TriggerEvent Address="00:00:00:00:00:00:00:00" AddressName="Luminaire Internal" Type="Initialized"/>
+      <Action>
+        <LevelActivation>
+          <Level Activation="true">1</Level>
+        </LevelActivation>
+        <LuminaireSetting Command="SetFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <Constant_u8>20</Constant_u8>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetColorFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <Constant_u8>10</Constant_u8>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed CCT from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="ColorChangedCCT"/>
+      <Action>
+        <LuminaireSetting Command="SetColorTemperature">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed CCT with fade time from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="Event02"/>
+      <Action>
+        <LuminaireSetting Command="SetColorTemperature">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetColorFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="DimLevel changed from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="DimLevelChanged"/>
+      <Action>
+        <LuminaireSetting Command="SetDimmingLevel">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Dimlevel changed with fade time from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="Event03"/>
+      <Action>
+        <LuminaireSetting Command="SetDimmingLevel">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed CCT and DimLevel from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="Event01"/>
+      <Action>
+        <LuminaireSetting Command="SetColorTemperature">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetDimmingLevel">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed RGB from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="ColorChangedRGB"/>
+      <Action>
+        <LuminaireSetting Command="SetColorRGB">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+          <Argument>
+            <EventArgIndex>3</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed RGB from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="Event04"/>
+      <Action>
+        <LuminaireSetting Command="SetColorRGB">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+          <Argument>
+            <EventArgIndex>3</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetColorFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>4</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="On Received from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="OnOffChanged"/>
+      <Condition>
+        <EventParCondition Comparator="EQ">
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+          <Argument>
+            <Constant_u8>1</Constant_u8>
+          </Argument>
+        </EventParCondition>
+      </Condition>
+      <Action>
+        <LevelActivation>
+          <Level Activation="true">1</Level>
+        </LevelActivation>
+      </Action>
+    </Rule>
+    <Rule Name="Off Received from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="OnOffChanged"/>
+      <Condition>
+        <EventParCondition Comparator="EQ">
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+          <Argument>
+            <Constant_u8>0</Constant_u8>
+          </Argument>
+        </EventParCondition>
+      </Condition>
+      <Action>
+        <LevelActivation>
+          <Level Activation="false">1</Level>
+        </LevelActivation>
+      </Action>
+    </Rule>
+    <ConfigurationParameter ILBDeviceIndex="1" ParameterID="PresenceSensorDevice_PresenceReportingInterval">
+      <uint16>1</uint16>
+    </ConfigurationParameter>
+    <ConfigurationParameter ILBDeviceIndex="1" ParameterID="PresenceSensorDevice_AbsenceTime">
+      <uint16>1</uint16>
+    </ConfigurationParameter>
+    <ConfigurationParameter ILBDeviceIndex="1" ParameterID="PresenceSensorDevice_PresenceLevel">
+      <uint16>3</uint16>
+    </ConfigurationParameter>
+    <ConfigurationParameter ILBDeviceIndex="1" ParameterID="LuminaireDevice_Max_RandomAnnounceDelay">
+      <uint16>240</uint16>
+    </ConfigurationParameter>
+  </Luminaire>
+  <Luminaire Address="00:15:8d:00:00:35:ce:7f" MaxNumberOfPresets="1" MaxNumberOfVariables="1" Name="ce:7f" NumberOfLLE="1" NumberOfLevels="1">
+    <LevelDefs>
+      <DefColorCCT Brightness="35000" CCT="4000" LLEAddress="1" On="true">1</DefColorCCT>
+    </LevelDefs>
+    <Rule Name="Initialized">
+      <TriggerEvent Address="00:00:00:00:00:00:00:00" AddressName="Luminaire Internal" Type="Initialized"/>
+      <Action>
+        <LevelActivation>
+          <Level Activation="true">1</Level>
+        </LevelActivation>
+        <LuminaireSetting Command="SetFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <Constant_u8>20</Constant_u8>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetColorFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <Constant_u8>10</Constant_u8>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed CCT from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="ColorChangedCCT"/>
+      <Action>
+        <LuminaireSetting Command="SetColorTemperature">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed CCT with fade time from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="Event02"/>
+      <Action>
+        <LuminaireSetting Command="SetColorTemperature">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetColorFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="DimLevel changed from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="DimLevelChanged"/>
+      <Action>
+        <LuminaireSetting Command="SetDimmingLevel">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Dimlevel changed with fade time from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="Event03"/>
+      <Action>
+        <LuminaireSetting Command="SetDimmingLevel">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed CCT and DimLevel from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="Event01"/>
+      <Action>
+        <LuminaireSetting Command="SetColorTemperature">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetDimmingLevel">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed RGB from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="ColorChangedRGB"/>
+      <Action>
+        <LuminaireSetting Command="SetColorRGB">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+          <Argument>
+            <EventArgIndex>3</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed RGB from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="Event04"/>
+      <Action>
+        <LuminaireSetting Command="SetColorRGB">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+          <Argument>
+            <EventArgIndex>3</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetColorFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>4</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="On Received from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="OnOffChanged"/>
+      <Condition>
+        <EventParCondition Comparator="EQ">
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+          <Argument>
+            <Constant_u8>1</Constant_u8>
+          </Argument>
+        </EventParCondition>
+      </Condition>
+      <Action>
+        <LevelActivation>
+          <Level Activation="true">1</Level>
+        </LevelActivation>
+      </Action>
+    </Rule>
+    <Rule Name="Off Received from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="OnOffChanged"/>
+      <Condition>
+        <EventParCondition Comparator="EQ">
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+          <Argument>
+            <Constant_u8>0</Constant_u8>
+          </Argument>
+        </EventParCondition>
+      </Condition>
+      <Action>
+        <LevelActivation>
+          <Level Activation="false">1</Level>
+        </LevelActivation>
+      </Action>
+    </Rule>
+    <ConfigurationParameter ILBDeviceIndex="1" ParameterID="PresenceSensorDevice_PresenceReportingInterval">
+      <uint16>1</uint16>
+    </ConfigurationParameter>
+    <ConfigurationParameter ILBDeviceIndex="1" ParameterID="PresenceSensorDevice_AbsenceTime">
+      <uint16>1</uint16>
+    </ConfigurationParameter>
+    <ConfigurationParameter ILBDeviceIndex="1" ParameterID="PresenceSensorDevice_PresenceLevel">
+      <uint16>3</uint16>
+    </ConfigurationParameter>
+    <ConfigurationParameter ILBDeviceIndex="1" ParameterID="LuminaireDevice_Max_RandomAnnounceDelay">
+      <uint16>240</uint16>
+    </ConfigurationParameter>
+  </Luminaire>
+  <Luminaire Address="00:15:8d:00:00:35:d2:42" MaxNumberOfPresets="1" MaxNumberOfVariables="1" Name="d2:42" NumberOfLLE="1" NumberOfLevels="1">
+    <LevelDefs>
+      <DefColorCCT Brightness="35000" CCT="4000" LLEAddress="1" On="true">1</DefColorCCT>
+    </LevelDefs>
+    <Rule Name="Initialized">
+      <TriggerEvent Address="00:00:00:00:00:00:00:00" AddressName="Luminaire Internal" Type="Initialized"/>
+      <Action>
+        <LevelActivation>
+          <Level Activation="true">1</Level>
+        </LevelActivation>
+        <LuminaireSetting Command="SetFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <Constant_u8>20</Constant_u8>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetColorFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <Constant_u8>10</Constant_u8>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed CCT from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="ColorChangedCCT"/>
+      <Action>
+        <LuminaireSetting Command="SetColorTemperature">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed CCT with fade time from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="Event02"/>
+      <Action>
+        <LuminaireSetting Command="SetColorTemperature">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetColorFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="DimLevel changed from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="DimLevelChanged"/>
+      <Action>
+        <LuminaireSetting Command="SetDimmingLevel">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Dimlevel changed with fade time from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="Event03"/>
+      <Action>
+        <LuminaireSetting Command="SetDimmingLevel">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed CCT and DimLevel from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="Event01"/>
+      <Action>
+        <LuminaireSetting Command="SetColorTemperature">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetDimmingLevel">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed RGB from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="ColorChangedRGB"/>
+      <Action>
+        <LuminaireSetting Command="SetColorRGB">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+          <Argument>
+            <EventArgIndex>3</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed RGB from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="Event04"/>
+      <Action>
+        <LuminaireSetting Command="SetColorRGB">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+          <Argument>
+            <EventArgIndex>3</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetColorFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>4</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="On Received from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="OnOffChanged"/>
+      <Condition>
+        <EventParCondition Comparator="EQ">
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+          <Argument>
+            <Constant_u8>1</Constant_u8>
+          </Argument>
+        </EventParCondition>
+      </Condition>
+      <Action>
+        <LevelActivation>
+          <Level Activation="true">1</Level>
+        </LevelActivation>
+      </Action>
+    </Rule>
+    <Rule Name="Off Received from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="OnOffChanged"/>
+      <Condition>
+        <EventParCondition Comparator="EQ">
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+          <Argument>
+            <Constant_u8>0</Constant_u8>
+          </Argument>
+        </EventParCondition>
+      </Condition>
+      <Action>
+        <LevelActivation>
+          <Level Activation="false">1</Level>
+        </LevelActivation>
+      </Action>
+    </Rule>
+    <ConfigurationParameter ILBDeviceIndex="1" ParameterID="PresenceSensorDevice_PresenceReportingInterval">
+      <uint16>1</uint16>
+    </ConfigurationParameter>
+    <ConfigurationParameter ILBDeviceIndex="1" ParameterID="PresenceSensorDevice_AbsenceTime">
+      <uint16>1</uint16>
+    </ConfigurationParameter>
+    <ConfigurationParameter ILBDeviceIndex="1" ParameterID="PresenceSensorDevice_PresenceLevel">
+      <uint16>3</uint16>
+    </ConfigurationParameter>
+    <ConfigurationParameter ILBDeviceIndex="1" ParameterID="LuminaireDevice_Max_RandomAnnounceDelay">
+      <uint16>240</uint16>
+    </ConfigurationParameter>
+  </Luminaire>
+  <Luminaire Address="00:15:8d:00:00:35:d2:04" MaxNumberOfPresets="1" MaxNumberOfVariables="1" Name="d2:04" NumberOfLLE="1" NumberOfLevels="1">
+    <LevelDefs>
+      <DefColorCCT Brightness="35000" CCT="4000" LLEAddress="1" On="true">1</DefColorCCT>
+    </LevelDefs>
+    <Rule Name="Initialized">
+      <TriggerEvent Address="00:00:00:00:00:00:00:00" AddressName="Luminaire Internal" Type="Initialized"/>
+      <Action>
+        <LevelActivation>
+          <Level Activation="true">1</Level>
+        </LevelActivation>
+        <LuminaireSetting Command="SetFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <Constant_u8>20</Constant_u8>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetColorFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <Constant_u8>10</Constant_u8>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed CCT from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="ColorChangedCCT"/>
+      <Action>
+        <LuminaireSetting Command="SetColorTemperature">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed CCT with fade time from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="Event02"/>
+      <Action>
+        <LuminaireSetting Command="SetColorTemperature">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetColorFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="DimLevel changed from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="DimLevelChanged"/>
+      <Action>
+        <LuminaireSetting Command="SetDimmingLevel">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Dimlevel changed with fade time from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="Event03"/>
+      <Action>
+        <LuminaireSetting Command="SetDimmingLevel">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed CCT and DimLevel from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="Event01"/>
+      <Action>
+        <LuminaireSetting Command="SetColorTemperature">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetDimmingLevel">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed RGB from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="ColorChangedRGB"/>
+      <Action>
+        <LuminaireSetting Command="SetColorRGB">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+          <Argument>
+            <EventArgIndex>3</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed RGB from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="Event04"/>
+      <Action>
+        <LuminaireSetting Command="SetColorRGB">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+          <Argument>
+            <EventArgIndex>3</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetColorFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>4</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="On Received from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="OnOffChanged"/>
+      <Condition>
+        <EventParCondition Comparator="EQ">
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+          <Argument>
+            <Constant_u8>1</Constant_u8>
+          </Argument>
+        </EventParCondition>
+      </Condition>
+      <Action>
+        <LevelActivation>
+          <Level Activation="true">1</Level>
+        </LevelActivation>
+      </Action>
+    </Rule>
+    <Rule Name="Off Received from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="OnOffChanged"/>
+      <Condition>
+        <EventParCondition Comparator="EQ">
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+          <Argument>
+            <Constant_u8>0</Constant_u8>
+          </Argument>
+        </EventParCondition>
+      </Condition>
+      <Action>
+        <LevelActivation>
+          <Level Activation="false">1</Level>
+        </LevelActivation>
+      </Action>
+    </Rule>
+    <ConfigurationParameter ILBDeviceIndex="1" ParameterID="PresenceSensorDevice_PresenceReportingInterval">
+      <uint16>1</uint16>
+    </ConfigurationParameter>
+    <ConfigurationParameter ILBDeviceIndex="1" ParameterID="PresenceSensorDevice_AbsenceTime">
+      <uint16>1</uint16>
+    </ConfigurationParameter>
+    <ConfigurationParameter ILBDeviceIndex="1" ParameterID="PresenceSensorDevice_PresenceLevel">
+      <uint16>3</uint16>
+    </ConfigurationParameter>
+    <ConfigurationParameter ILBDeviceIndex="1" ParameterID="LuminaireDevice_Max_RandomAnnounceDelay">
+      <uint16>240</uint16>
+    </ConfigurationParameter>
+  </Luminaire>
+  <Luminaire Address="00:15:8D:00:00:35:D2:00" MaxNumberOfPresets="1" MaxNumberOfVariables="1" Name="D2:00" NumberOfLLE="1" NumberOfLevels="1">
+    <LevelDefs>
+      <DefColorCCT Brightness="35000" CCT="4000" LLEAddress="1" On="true">1</DefColorCCT>
+    </LevelDefs>
+    <Rule Name="Initialized">
+      <TriggerEvent Address="00:00:00:00:00:00:00:00" AddressName="Luminaire Internal" Type="Initialized"/>
+      <Action>
+        <LevelActivation>
+          <Level Activation="true">1</Level>
+        </LevelActivation>
+        <LuminaireSetting Command="SetFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <Constant_u8>20</Constant_u8>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetColorFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <Constant_u8>10</Constant_u8>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed CCT from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="ColorChangedCCT"/>
+      <Action>
+        <LuminaireSetting Command="SetColorTemperature">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed CCT with fade time from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="Event02"/>
+      <Action>
+        <LuminaireSetting Command="SetColorTemperature">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetColorFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="DimLevel changed from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="DimLevelChanged"/>
+      <Action>
+        <LuminaireSetting Command="SetDimmingLevel">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Dimlevel changed with fade time from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="Event03"/>
+      <Action>
+        <LuminaireSetting Command="SetDimmingLevel">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed CCT and DimLevel from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="Event01"/>
+      <Action>
+        <LuminaireSetting Command="SetColorTemperature">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetDimmingLevel">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed RGB from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="ColorChangedRGB"/>
+      <Action>
+        <LuminaireSetting Command="SetColorRGB">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+          <Argument>
+            <EventArgIndex>3</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed RGB from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="Event04"/>
+      <Action>
+        <LuminaireSetting Command="SetColorRGB">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+          <Argument>
+            <EventArgIndex>3</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetColorFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>4</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="On Received from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="OnOffChanged"/>
+      <Condition>
+        <EventParCondition Comparator="EQ">
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+          <Argument>
+            <Constant_u8>1</Constant_u8>
+          </Argument>
+        </EventParCondition>
+      </Condition>
+      <Action>
+        <LevelActivation>
+          <Level Activation="true">1</Level>
+        </LevelActivation>
+      </Action>
+    </Rule>
+    <Rule Name="Off Received from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="OnOffChanged"/>
+      <Condition>
+        <EventParCondition Comparator="EQ">
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+          <Argument>
+            <Constant_u8>0</Constant_u8>
+          </Argument>
+        </EventParCondition>
+      </Condition>
+      <Action>
+        <LevelActivation>
+          <Level Activation="false">1</Level>
+        </LevelActivation>
+      </Action>
+    </Rule>
+    <ConfigurationParameter ILBDeviceIndex="1" ParameterID="PresenceSensorDevice_PresenceReportingInterval">
+      <uint16>1</uint16>
+    </ConfigurationParameter>
+    <ConfigurationParameter ILBDeviceIndex="1" ParameterID="PresenceSensorDevice_AbsenceTime">
+      <uint16>1</uint16>
+    </ConfigurationParameter>
+    <ConfigurationParameter ILBDeviceIndex="1" ParameterID="PresenceSensorDevice_PresenceLevel">
+      <uint16>3</uint16>
+    </ConfigurationParameter>
+    <ConfigurationParameter ILBDeviceIndex="1" ParameterID="LuminaireDevice_Max_RandomAnnounceDelay">
+      <uint16>240</uint16>
+    </ConfigurationParameter>
+  </Luminaire>
+  <Luminaire Address="00:15:8D:00:00:35:D2:FB" MaxNumberOfPresets="1" MaxNumberOfVariables="1" Name="D2:FB" NumberOfLLE="1" NumberOfLevels="1">
+    <LevelDefs>
+      <DefColorCCT Brightness="35000" CCT="4000" LLEAddress="1" On="true">1</DefColorCCT>
+    </LevelDefs>
+    <Rule Name="Initialized">
+      <TriggerEvent Address="00:00:00:00:00:00:00:00" AddressName="Luminaire Internal" Type="Initialized"/>
+      <Action>
+        <LevelActivation>
+          <Level Activation="true">1</Level>
+        </LevelActivation>
+        <LuminaireSetting Command="SetFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <Constant_u8>20</Constant_u8>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetColorFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <Constant_u8>10</Constant_u8>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed CCT from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="ColorChangedCCT"/>
+      <Action>
+        <LuminaireSetting Command="SetColorTemperature">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed CCT with fade time from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="Event02"/>
+      <Action>
+        <LuminaireSetting Command="SetColorTemperature">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetColorFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="DimLevel changed from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="DimLevelChanged"/>
+      <Action>
+        <LuminaireSetting Command="SetDimmingLevel">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Dimlevel changed with fade time from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="Event03"/>
+      <Action>
+        <LuminaireSetting Command="SetDimmingLevel">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed CCT and DimLevel from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="Event01"/>
+      <Action>
+        <LuminaireSetting Command="SetColorTemperature">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetDimmingLevel">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed RGB from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="ColorChangedRGB"/>
+      <Action>
+        <LuminaireSetting Command="SetColorRGB">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+          <Argument>
+            <EventArgIndex>3</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed RGB from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="Event04"/>
+      <Action>
+        <LuminaireSetting Command="SetColorRGB">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+          <Argument>
+            <EventArgIndex>3</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetColorFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>4</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="On Received from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="OnOffChanged"/>
+      <Condition>
+        <EventParCondition Comparator="EQ">
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+          <Argument>
+            <Constant_u8>1</Constant_u8>
+          </Argument>
+        </EventParCondition>
+      </Condition>
+      <Action>
+        <LevelActivation>
+          <Level Activation="true">1</Level>
+        </LevelActivation>
+      </Action>
+    </Rule>
+    <Rule Name="Off Received from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="OnOffChanged"/>
+      <Condition>
+        <EventParCondition Comparator="EQ">
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+          <Argument>
+            <Constant_u8>0</Constant_u8>
+          </Argument>
+        </EventParCondition>
+      </Condition>
+      <Action>
+        <LevelActivation>
+          <Level Activation="false">1</Level>
+        </LevelActivation>
+      </Action>
+    </Rule>
+    <ConfigurationParameter ILBDeviceIndex="1" ParameterID="PresenceSensorDevice_PresenceReportingInterval">
+      <uint16>1</uint16>
+    </ConfigurationParameter>
+    <ConfigurationParameter ILBDeviceIndex="1" ParameterID="PresenceSensorDevice_AbsenceTime">
+      <uint16>1</uint16>
+    </ConfigurationParameter>
+    <ConfigurationParameter ILBDeviceIndex="1" ParameterID="PresenceSensorDevice_PresenceLevel">
+      <uint16>3</uint16>
+    </ConfigurationParameter>
+    <ConfigurationParameter ILBDeviceIndex="1" ParameterID="LuminaireDevice_Max_RandomAnnounceDelay">
+      <uint16>240</uint16>
+    </ConfigurationParameter>
+  </Luminaire>
+  <Luminaire Address="00:15:8D:00:00:35:D2:0E" MaxNumberOfPresets="1" MaxNumberOfVariables="1" Name="D2:0E" NumberOfLLE="1" NumberOfLevels="1">
+    <LevelDefs>
+      <DefColorCCT Brightness="35000" CCT="4000" LLEAddress="1" On="true">1</DefColorCCT>
+    </LevelDefs>
+    <Rule Name="Initialized">
+      <TriggerEvent Address="00:00:00:00:00:00:00:00" AddressName="Luminaire Internal" Type="Initialized"/>
+      <Action>
+        <LevelActivation>
+          <Level Activation="true">1</Level>
+        </LevelActivation>
+        <LuminaireSetting Command="SetFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <Constant_u8>20</Constant_u8>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetColorFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <Constant_u8>10</Constant_u8>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed CCT from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="ColorChangedCCT"/>
+      <Action>
+        <LuminaireSetting Command="SetColorTemperature">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed CCT with fade time from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="Event02"/>
+      <Action>
+        <LuminaireSetting Command="SetColorTemperature">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetColorFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="DimLevel changed from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="DimLevelChanged"/>
+      <Action>
+        <LuminaireSetting Command="SetDimmingLevel">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Dimlevel changed with fade time from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="Event03"/>
+      <Action>
+        <LuminaireSetting Command="SetDimmingLevel">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed CCT and DimLevel from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="Event01"/>
+      <Action>
+        <LuminaireSetting Command="SetColorTemperature">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetDimmingLevel">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed RGB from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="ColorChangedRGB"/>
+      <Action>
+        <LuminaireSetting Command="SetColorRGB">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+          <Argument>
+            <EventArgIndex>3</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed RGB from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="Event04"/>
+      <Action>
+        <LuminaireSetting Command="SetColorRGB">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+          <Argument>
+            <EventArgIndex>3</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetColorFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>4</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="On Received from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="OnOffChanged"/>
+      <Condition>
+        <EventParCondition Comparator="EQ">
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+          <Argument>
+            <Constant_u8>1</Constant_u8>
+          </Argument>
+        </EventParCondition>
+      </Condition>
+      <Action>
+        <LevelActivation>
+          <Level Activation="true">1</Level>
+        </LevelActivation>
+      </Action>
+    </Rule>
+    <Rule Name="Off Received from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="OnOffChanged"/>
+      <Condition>
+        <EventParCondition Comparator="EQ">
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+          <Argument>
+            <Constant_u8>0</Constant_u8>
+          </Argument>
+        </EventParCondition>
+      </Condition>
+      <Action>
+        <LevelActivation>
+          <Level Activation="false">1</Level>
+        </LevelActivation>
+      </Action>
+    </Rule>
+    <ConfigurationParameter ILBDeviceIndex="1" ParameterID="PresenceSensorDevice_PresenceReportingInterval">
+      <uint16>1</uint16>
+    </ConfigurationParameter>
+    <ConfigurationParameter ILBDeviceIndex="1" ParameterID="PresenceSensorDevice_AbsenceTime">
+      <uint16>1</uint16>
+    </ConfigurationParameter>
+    <ConfigurationParameter ILBDeviceIndex="1" ParameterID="PresenceSensorDevice_PresenceLevel">
+      <uint16>3</uint16>
+    </ConfigurationParameter>
+    <ConfigurationParameter ILBDeviceIndex="1" ParameterID="LuminaireDevice_Max_RandomAnnounceDelay">
+      <uint16>240</uint16>
+    </ConfigurationParameter>
+  </Luminaire>
+  <Luminaire Address="00:15:8D:00:00:35:D1:FD" MaxNumberOfPresets="1" MaxNumberOfVariables="1" Name="D1:FD" NumberOfLLE="1" NumberOfLevels="1">
+    <LevelDefs>
+      <DefColorCCT Brightness="35000" CCT="4000" LLEAddress="1" On="true">1</DefColorCCT>
+    </LevelDefs>
+    <Rule Name="Initialized">
+      <TriggerEvent Address="00:00:00:00:00:00:00:00" AddressName="Luminaire Internal" Type="Initialized"/>
+      <Action>
+        <LevelActivation>
+          <Level Activation="true">1</Level>
+        </LevelActivation>
+        <LuminaireSetting Command="SetFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <Constant_u8>20</Constant_u8>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetColorFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <Constant_u8>10</Constant_u8>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed CCT from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="ColorChangedCCT"/>
+      <Action>
+        <LuminaireSetting Command="SetColorTemperature">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed CCT with fade time from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="Event02"/>
+      <Action>
+        <LuminaireSetting Command="SetColorTemperature">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetColorFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="DimLevel changed from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="DimLevelChanged"/>
+      <Action>
+        <LuminaireSetting Command="SetDimmingLevel">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Dimlevel changed with fade time from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="Event03"/>
+      <Action>
+        <LuminaireSetting Command="SetDimmingLevel">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed CCT and DimLevel from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="Event01"/>
+      <Action>
+        <LuminaireSetting Command="SetColorTemperature">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetDimmingLevel">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed RGB from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="ColorChangedRGB"/>
+      <Action>
+        <LuminaireSetting Command="SetColorRGB">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+          <Argument>
+            <EventArgIndex>3</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="Color Changed RGB from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="Event04"/>
+      <Action>
+        <LuminaireSetting Command="SetColorRGB">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+          <Argument>
+            <EventArgIndex>2</EventArgIndex>
+          </Argument>
+          <Argument>
+            <EventArgIndex>3</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+        <LuminaireSetting Command="SetColorFadeTime">
+          <Level>1</Level>
+          <Argument>
+            <EventArgIndex>4</EventArgIndex>
+          </Argument>
+        </LuminaireSetting>
+      </Action>
+    </Rule>
+    <Rule Name="On Received from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="OnOffChanged"/>
+      <Condition>
+        <EventParCondition Comparator="EQ">
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+          <Argument>
+            <Constant_u8>1</Constant_u8>
+          </Argument>
+        </EventParCondition>
+      </Condition>
+      <Action>
+        <LevelActivation>
+          <Level Activation="true">1</Level>
+        </LevelActivation>
+      </Action>
+    </Rule>
+    <Rule Name="Off Received from PC">
+      <TriggerEvent Address="01:02:03:04:05:06:07:00" AddressName="PC" Type="OnOffChanged"/>
+      <Condition>
+        <EventParCondition Comparator="EQ">
+          <Argument>
+            <EventArgIndex>1</EventArgIndex>
+          </Argument>
+          <Argument>
+            <Constant_u8>0</Constant_u8>
+          </Argument>
+        </EventParCondition>
+      </Condition>
+      <Action>
+        <LevelActivation>
+          <Level Activation="false">1</Level>
+        </LevelActivation>
+      </Action>
+    </Rule>
+    <ConfigurationParameter ILBDeviceIndex="1" ParameterID="PresenceSensorDevice_PresenceReportingInterval">
+      <uint16>1</uint16>
+    </ConfigurationParameter>
+    <ConfigurationParameter ILBDeviceIndex="1" ParameterID="PresenceSensorDevice_AbsenceTime">
+      <uint16>1</uint16>
+    </ConfigurationParameter>
+    <ConfigurationParameter ILBDeviceIndex="1" ParameterID="PresenceSensorDevice_PresenceLevel">
+      <uint16>3</uint16>
+    </ConfigurationParameter>
+    <ConfigurationParameter ILBDeviceIndex="1" ParameterID="LuminaireDevice_Max_RandomAnnounceDelay">
+      <uint16>240</uint16>
+    </ConfigurationParameter>
+  </Luminaire>
+</AreaLightingSystem>
